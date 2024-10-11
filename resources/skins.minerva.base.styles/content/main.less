@@ -72,3 +72,28 @@ body {
 		}
 	}
 }
+
+
+/* Hide the top menu bar by default (for mobile) */
+.top-menu-bar {
+    display: none;
+}
+
+/* Show and style the top menu bar for viewports wider than 768px */
+@media screen and (min-width: @width-breakpoint-mobile) {
+    .top-menu-bar {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 10px 0;
+    }
+}
+
+.top-menu-bar a, 
+.top-menu-bar a:visited {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.6);
+    padding: 5px 10px;
+    text-transform: uppercase;
+    font-weight: 600;
+}

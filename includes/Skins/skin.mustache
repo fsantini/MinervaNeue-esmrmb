@@ -9,6 +9,16 @@
 			{{{html-user-message}}}
 			{{^is-title-blank}}
 			<div class="pre-content heading-holder">
+			    {{#page-logo-file.exists}}
+				<div style="width: 100%; text-align: right">
+				    <img src="{{page-logo-file.path}}" width=200px>
+				</div>
+			    {{/page-logo-file.exists}}
+				<div class="top-menu-bar">
+				    {{#data-sidebar-menu}}
+					    <a class="top-menu-bar-a" href="{{href}}">{{text}}</a>
+				    {{/data-sidebar-menu}}
+				</div>
 				<div class="page-heading">
 					{{{html-title-heading}}}
 					{{{html-minerva-tagline}}}

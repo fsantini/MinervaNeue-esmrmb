@@ -326,6 +326,30 @@ class SkinMinerva extends SkinMustache {
 	}
 
 	/**
+	* Get sidebar menu items from MediaWiki:Sidebar
+	*
+	* @return array An array of menu items
+	*/
+	private function getSidebarMenuItems() {
+	    $sidebar = $this->buildSidebar();
+	    $menuItems = [];
+
+	    foreach ($sidebar as $section => $links) {
+		if ($section === 'TOPBAR') {
+		    foreach ($links as $link) {
+			$menuItems[] = [
+			    'text' => $link['text'],
+			    'href' => $link['href'],
+			];
+		    }
+		    break;  // We only want the 'navigation' section
+		}
+	    }
+
+	    return $menuItems;
+	}
+	
+	/**
 	 * @inheritDoc
 	 */
 	public function getTemplateData(): array {
@@ -360,6 +384,22 @@ class SkinMinerva extends SkinMustache {
 		$notifications = $data['data-portlets']['data-notifications']['array-items'] ?? [];
 		$associatedPages = $data['data-portlets']['data-associated-pages'] ?? [];
 
+		$data['data-sidebar-menu'] = $this->getSidebarMenuItems();
+		global $wgMinervaPageLogo;
+
+		// Check if the file path is set and the file exists
+		if (!empty($wgMinervaPageLogo)) {
+		    $data['page-logo-file'] = [
+			'exists' => true,
+			'path' => $wgMinervaPageLogo
+		    ];
+		} else {
+		    $data['page-logo-file'] = [
+			'exists' => false
+		    ];
+		}
+		
+		
 		return $data + [
 			'has-minerva-languages' => $allLanguages || $allVariants,
 			'array-minerva-banners' => $this->prepareBanners( $data['html-site-notice'] ),
