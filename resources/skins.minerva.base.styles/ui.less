@@ -255,3 +255,43 @@ main {
 	}
 }
 /* stylelint-enable no-descending-specificity */
+
+
+/* Hide the top menu bar by default (for mobile) */
+.top-menu-bar {
+    display: none;
+}
+
+/* Show and style the top menu bar for viewports wider than 768px */
+@media screen and (min-width: 768px) {
+    .top-menu-bar {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 10px 0;
+    }
+}
+
+.top-menu-bar a:hover {
+    color: rgb(0, 144, 128);
+    border-top: 2px solid rgb(0, 144, 128);
+    padding-top: 3px;
+    text-decoration: unset;
+}
+
+
+.top-menu-bar a, 
+.top-menu-bar a:visited {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.6);
+    padding: 5px 10px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.top-menu-bar a:hover {
+    color: rgb(0, 144, 128);
+    border-top: 2px solid rgb(0, 144, 128);
+    padding-top: 3px;
+    text-decoration: unset;
+}
